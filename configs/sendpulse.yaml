@@ -1,0 +1,14 @@
+app_name: sendpulse
+server:
+  address: ":8080"
+  mode: dev
+database:
+  dsn: "postgres://postgres:postgres@localhost:5432/sendpulse?sslmode=disable"
+messaging:
+  interval: 5s
+  batch_size: 10
+  max_retries: 2
+  retry_delay: 2s
+  enabled: true
+webhook:
+  url: "https://webhook.site/d0ab3908-3a9e-4561-8b02-5ba70ee49006"

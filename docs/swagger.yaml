@@ -1,0 +1,235 @@
+definitions:
+  github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse:
+    properties:
+      error:
+        type: string
+      message:
+        type: string
+      status:
+        type: string
+      timestamp:
+        type: string
+    type: object
+  github_com_boratanrikulu_sendpulse_internal_dto.HealthResponse:
+    properties:
+      mode:
+        type: string
+      service:
+        type: string
+      status:
+        type: string
+      timestamp:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_boratanrikulu_sendpulse_internal_dto.MessageResponse:
+    properties:
+      content:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      message_id:
+        type: string
+      retry_count:
+        type: integer
+      sent_at:
+        type: string
+      status:
+        type: string
+      to:
+        type: string
+      webhook_response:
+        additionalProperties: {}
+        type: object
+    type: object
+  github_com_boratanrikulu_sendpulse_internal_dto.MessagesListResponse:
+    properties:
+      messages:
+        items:
+          $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessageResponse'
+        type: array
+      page:
+        type: integer
+      page_size:
+        type: integer
+      status:
+        type: string
+      timestamp:
+        type: string
+      total:
+        type: integer
+    type: object
+  github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse:
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+      timestamp:
+        type: string
+    type: object
+  github_com_boratanrikulu_sendpulse_internal_dto.MessagingStatusResponse:
+    properties:
+      batch_size:
+        type: integer
+      enabled:
+        type: boolean
+      interval:
+        type: string
+      max_retries:
+        type: integer
+      retry_delay:
+        type: string
+      status:
+        type: string
+      timestamp:
+        type: string
+    type: object
+  github_com_boratanrikulu_sendpulse_internal_dto.SingleMessageResponse:
+    properties:
+      message:
+        $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessageResponse'
+      status:
+        type: string
+      timestamp:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /health:
+    get:
+      description: Check if the service is running
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.HealthResponse'
+      summary: Health Check
+      tags:
+      - health
+  /messages:
+    get:
+      description: Get a paginated list of sent messages
+      parameters:
+      - description: 'Page number (default: 1)'
+        in: query
+        minimum: 1
+        name: page
+        type: integer
+      - description: 'Page size (default: 20, max: 100)'
+        in: query
+        maximum: 100
+        minimum: 1
+        name: page_size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagesListResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+      summary: List Sent Messages
+      tags:
+      - messages
+  /messages/{id}:
+    get:
+      description: Get details of a specific message by its ID
+      parameters:
+      - description: Message ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.SingleMessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+      summary: Get Message by ID
+      tags:
+      - messages
+  /messaging/start:
+    post:
+      description: Start the automatic message sending process
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+      summary: Start Messaging Service
+      tags:
+      - messaging
+  /messaging/status:
+    get:
+      description: Get the current status of the automatic message sending service
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingStatusResponse'
+      summary: Get Messaging Service Status
+      tags:
+      - messaging
+  /messaging/stop:
+    post:
+      description: Stop the automatic message sending process
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+      summary: Stop Messaging Service
+      tags:
+      - messaging
+swagger: "2.0"

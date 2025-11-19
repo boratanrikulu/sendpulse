@@ -1,0 +1,110 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: sendpulse
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    
+    env:
+      SENDPULSE_DATABASE_DSN: "postgres://postgres:postgres@localhost:5432/sendpulse?sslmode=disable"
+      SENDPULSE_WEBHOOK_URL: "https://webhook.site/d0ab3908-3a9e-4561-8b02-5ba70ee49006"
+      SENDPULSE_SERVER_MODE: "dev"
+      SENDPULSE_SERVER_ADDRESS: ":8080"
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: 1.25.x
+    
+    - name: Cache Go modules
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-1.25.x-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-1.25.x-
+    
+    - name: Download dependencies
+      run: go mod download
+    
+    - name: Verify dependencies
+      run: go mod verify
+
+    - name: Build application
+      run: make build
+
+    - name: Wait for PostgreSQL to be ready
+      run: |
+        until pg_isready -h localhost -p 5432 -U postgres; do
+          echo "Waiting for PostgreSQL..."
+          sleep 2
+        done
+    
+    - name: Initialize database
+      run: ./build/sendpulse db init
+    
+    - name: Run database migrations
+      run: ./build/sendpulse db migrate
+    
+    - name: Run tests
+      run: go test -v -race -coverprofile=coverage.out ./...
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [test]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: 1.25.x
+    
+    - name: Cache Go modules
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-1.25.x-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-1.25.x-
+    
+    - name: Build
+      run: go build -v ./...
+    
+    - name: Build binaries
+      run: make build
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: build/
+        retention-days: 7
