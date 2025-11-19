@@ -29,7 +29,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.HealthResponse"
+                            "$ref": "#/definitions/dto.HealthResponse"
                         }
                     }
                 }
@@ -66,19 +66,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagesListResponse"
+                            "$ref": "#/definitions/dto.MessagesListResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -107,25 +107,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.SingleMessageResponse"
+                            "$ref": "#/definitions/dto.SingleMessageResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -145,19 +145,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse"
+                            "$ref": "#/definitions/dto.MessagingControlResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse"
+                            "$ref": "#/definitions/dto.MessagingControlResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -177,7 +177,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingStatusResponse"
+                            "$ref": "#/definitions/dto.MessagingStatusResponse"
                         }
                     }
                 }
@@ -197,19 +197,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse"
+                            "$ref": "#/definitions/dto.MessagingControlResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse"
+                            "$ref": "#/definitions/dto.MessagingControlResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse"
+                            "$ref": "#/definitions/dto.ErrorResponse"
                         }
                     }
                 }
@@ -217,7 +217,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse": {
+        "dto.ErrorResponse": {
             "type": "object",
             "properties": {
                 "error": {
@@ -234,7 +234,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_boratanrikulu_sendpulse_internal_dto.HealthResponse": {
+        "dto.HealthResponse": {
             "type": "object",
             "properties": {
                 "mode": {
@@ -254,7 +254,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_boratanrikulu_sendpulse_internal_dto.MessageResponse": {
+        "dto.MessageResponse": {
             "type": "object",
             "properties": {
                 "content": {
@@ -284,13 +284,13 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_boratanrikulu_sendpulse_internal_dto.MessagesListResponse": {
+        "dto.MessagesListResponse": {
             "type": "object",
             "properties": {
                 "messages": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessageResponse"
+                        "$ref": "#/definitions/dto.MessageResponse"
                     }
                 },
                 "page": {
@@ -310,7 +310,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse": {
+        "dto.MessagingControlResponse": {
             "type": "object",
             "properties": {
                 "message": {
@@ -324,7 +324,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_boratanrikulu_sendpulse_internal_dto.MessagingStatusResponse": {
+        "dto.MessagingStatusResponse": {
             "type": "object",
             "properties": {
                 "batch_size": {
@@ -350,11 +350,11 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_boratanrikulu_sendpulse_internal_dto.SingleMessageResponse": {
+        "dto.SingleMessageResponse": {
             "type": "object",
             "properties": {
                 "message": {
-                    "$ref": "#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessageResponse"
+                    "$ref": "#/definitions/dto.MessageResponse"
                 },
                 "status": {
                     "type": "string"

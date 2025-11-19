@@ -1,5 +1,5 @@
 definitions:
-  github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse:
+  dto.ErrorResponse:
     properties:
       error:
         type: string
@@ -10,7 +10,7 @@ definitions:
       timestamp:
         type: string
     type: object
-  github_com_boratanrikulu_sendpulse_internal_dto.HealthResponse:
+  dto.HealthResponse:
     properties:
       mode:
         type: string
@@ -23,7 +23,7 @@ definitions:
       version:
         type: string
     type: object
-  github_com_boratanrikulu_sendpulse_internal_dto.MessageResponse:
+  dto.MessageResponse:
     properties:
       content:
         type: string
@@ -43,11 +43,11 @@ definitions:
         additionalProperties: {}
         type: object
     type: object
-  github_com_boratanrikulu_sendpulse_internal_dto.MessagesListResponse:
+  dto.MessagesListResponse:
     properties:
       messages:
         items:
-          $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessageResponse'
+          $ref: '#/definitions/dto.MessageResponse'
         type: array
       page:
         type: integer
@@ -60,7 +60,7 @@ definitions:
       total:
         type: integer
     type: object
-  github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse:
+  dto.MessagingControlResponse:
     properties:
       message:
         type: string
@@ -69,7 +69,7 @@ definitions:
       timestamp:
         type: string
     type: object
-  github_com_boratanrikulu_sendpulse_internal_dto.MessagingStatusResponse:
+  dto.MessagingStatusResponse:
     properties:
       batch_size:
         type: integer
@@ -86,10 +86,10 @@ definitions:
       timestamp:
         type: string
     type: object
-  github_com_boratanrikulu_sendpulse_internal_dto.SingleMessageResponse:
+  dto.SingleMessageResponse:
     properties:
       message:
-        $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessageResponse'
+        $ref: '#/definitions/dto.MessageResponse'
       status:
         type: string
       timestamp:
@@ -107,7 +107,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.HealthResponse'
+            $ref: '#/definitions/dto.HealthResponse'
       summary: Health Check
       tags:
       - health
@@ -132,15 +132,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagesListResponse'
+            $ref: '#/definitions/dto.MessagesListResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       summary: List Sent Messages
       tags:
       - messages
@@ -159,19 +159,19 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.SingleMessageResponse'
+            $ref: '#/definitions/dto.SingleMessageResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       summary: Get Message by ID
       tags:
       - messages
@@ -184,15 +184,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse'
+            $ref: '#/definitions/dto.MessagingControlResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse'
+            $ref: '#/definitions/dto.MessagingControlResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       summary: Start Messaging Service
       tags:
       - messaging
@@ -205,7 +205,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingStatusResponse'
+            $ref: '#/definitions/dto.MessagingStatusResponse'
       summary: Get Messaging Service Status
       tags:
       - messaging
@@ -218,15 +218,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse'
+            $ref: '#/definitions/dto.MessagingControlResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.MessagingControlResponse'
+            $ref: '#/definitions/dto.MessagingControlResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_boratanrikulu_sendpulse_internal_dto.ErrorResponse'
+            $ref: '#/definitions/dto.ErrorResponse'
       summary: Stop Messaging Service
       tags:
       - messaging
