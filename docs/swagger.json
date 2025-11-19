@@ -4,7 +4,7 @@
         "contact": {}
     },
     "paths": {
-        "/health": {
+        "/api/v1/health": {
             "get": {
                 "description": "Check if the service is running",
                 "produces": [
@@ -24,7 +24,7 @@
                 }
             }
         },
-        "/messages": {
+        "/api/v1/messages": {
             "get": {
                 "description": "Get a paginated list of sent messages",
                 "produces": [
@@ -73,7 +73,7 @@
                 }
             }
         },
-        "/messages/{id}": {
+        "/api/v1/messages/{id}": {
             "get": {
                 "description": "Get details of a specific message by its ID",
                 "produces": [
@@ -120,7 +120,7 @@
                 }
             }
         },
-        "/messaging/start": {
+        "/api/v1/messaging/start": {
             "post": {
                 "description": "Start the automatic message sending process",
                 "produces": [
@@ -152,7 +152,7 @@
                 }
             }
         },
-        "/messaging/status": {
+        "/api/v1/messaging/status": {
             "get": {
                 "description": "Get the current status of the automatic message sending service",
                 "produces": [
@@ -172,7 +172,7 @@
                 }
             }
         },
-        "/messaging/stop": {
+        "/api/v1/messaging/stop": {
             "post": {
                 "description": "Stop the automatic message sending process",
                 "produces": [
@@ -257,9 +257,6 @@
                 },
                 "message_id": {
                     "type": "string"
-                },
-                "retry_count": {
-                    "type": "integer"
                 },
                 "sent_at": {
                     "type": "string"

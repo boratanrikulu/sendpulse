@@ -15,7 +15,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/health": {
+        "/api/v1/health": {
             "get": {
                 "description": "Check if the service is running",
                 "produces": [
@@ -35,7 +35,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/messages": {
+        "/api/v1/messages": {
             "get": {
                 "description": "Get a paginated list of sent messages",
                 "produces": [
@@ -84,7 +84,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/messages/{id}": {
+        "/api/v1/messages/{id}": {
             "get": {
                 "description": "Get details of a specific message by its ID",
                 "produces": [
@@ -131,7 +131,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/messaging/start": {
+        "/api/v1/messaging/start": {
             "post": {
                 "description": "Start the automatic message sending process",
                 "produces": [
@@ -163,7 +163,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/messaging/status": {
+        "/api/v1/messaging/status": {
             "get": {
                 "description": "Get the current status of the automatic message sending service",
                 "produces": [
@@ -183,7 +183,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/messaging/stop": {
+        "/api/v1/messaging/stop": {
             "post": {
                 "description": "Stop the automatic message sending process",
                 "produces": [
@@ -268,9 +268,6 @@ const docTemplate = `{
                 },
                 "message_id": {
                     "type": "string"
-                },
-                "retry_count": {
-                    "type": "integer"
                 },
                 "sent_at": {
                     "type": "string"
