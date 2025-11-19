@@ -37,7 +37,7 @@ services:
       - 8080:8080
     environment:
       - SENDPULSE_DATABASE_DSN=postgres://postgres:postgres@postgres:5432/sendpulse?sslmode=disable
-      - SENDPULSE_WEBHOOK_URL=https://webhook.site/d0ab3908-3a9e-4561-8b02-5ba70ee49006
+      - SENDPULSE_WEBHOOK_URL=https://webhook.site/9925f1cc-04f9-4daa-a2ad-e2cb7f4ba2ee
       - SENDPULSE_MESSAGING_ENABLED=true
       - SENDPULSE_MESSAGING_INTERVAL=5s
       - SENDPULSE_MESSAGING_BATCH_SIZE=2

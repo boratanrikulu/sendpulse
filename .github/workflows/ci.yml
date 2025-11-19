@@ -27,7 +27,7 @@ jobs:
 
     env:
       SENDPULSE_DATABASE_DSN: "postgres://postgres:postgres@localhost:5432/sendpulse?sslmode=disable"
-      SENDPULSE_WEBHOOK_URL: "https://webhook.site/d0ab3908-3a9e-4561-8b02-5ba70ee49006"
+      SENDPULSE_WEBHOOK_URL: "https://webhook.site/9925f1cc-04f9-4daa-a2ad-e2cb7f4ba2ee"
       SENDPULSE_SERVER_MODE: "dev"
       SENDPULSE_SERVER_ADDRESS: ":8080"
 
