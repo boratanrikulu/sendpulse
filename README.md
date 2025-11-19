@@ -105,7 +105,6 @@ webhook:
 ### Environment Variables
 ```bash
 export SENDPULSE_DATABASE_DSN="postgres://user:pass@host:5432/dbname"
-export SENDPULSE_REDIS_URL="redis://localhost:6379"
 export SENDPULSE_WEBHOOK_URL="https://webhook.site/your-endpoint"
 export SENDPULSE_MESSAGING_INTERVAL="2m"
 export SENDPULSE_MESSAGING_BATCH_SIZE="2"

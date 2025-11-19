@@ -26,10 +26,6 @@ docker: build
 run-dev-db:
 	docker-compose -f containers/composes/dc.dev.yml up --build postgres
 
-.PHONY: run-dev-redis
-run-dev-redis:
-	docker-compose -f containers/composes/dc.dev.yml up --build redis
-
 .PHONY: run-dev-srv
 run-dev-srv: docker
 	docker-compose -f containers/composes/dc.dev.yml up --build sendpulse
